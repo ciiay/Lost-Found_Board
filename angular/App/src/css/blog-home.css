@@ -1,0 +1,182 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+}
+
+.bg-dark {
+  background-color: #A8D8EA !important;
+}
+
+h1 {
+  color: #838ED9;
+}
+
+h2, h5 {
+  color: #1E56A0;
+  margin-top: 0px;
+  padding: 12px 12px 12px 12px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #5ec5eb;
+}
+
+#navbarResponsive {
+  display: flex!important;
+  flex: auto;
+}
+
+a.nav-link {
+  font-size: initial;
+}
+
+a#home, a#signUp, a#signIn, a#newPost {
+  color: #fff;
+}
+
+a#home-hover:hover, a#signIn-hover:hover, a#signUp-hover:hover, a#signOut-hover:hover, a#newPost-hover:hover {
+  color: #E3EFF3;
+}
+
+.login-form {
+  width: 688px;
+  text-align-last: center;
+}
+
+.login-label {
+  display: inline-block;
+  margin-bottom: .5rem;
+  text-align-last: left;
+}
+
+.login-input {
+  text-align-last: left;
+}
+
+.signup-form {
+  width: 688px;
+  text-align: -webkit-center;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #AA96DA;
+  border-color: #AA96DA;
+}
+
+.btn-primary:hover {
+  background-color: #c8b0ff;
+  border-color: #c8b0ff;
+  color: #fff;
+}
+
+.card {
+  border: 1px solid #FFD6D6;
+}
+
+.card-header {
+  background-color: #FCEFEE;
+  border-bottom: 1px solid #FFEED0;
+}
+
+.card-footer {
+  background-color: #FCEFEE;
+  border-top: 1px solid #FFEED0;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+input#first_name, input#last_name, input#email, input#confirm_email, input#password, input#confirm_password{
+  width: 260px;
+  margin-bottom: 5px;
+}
+
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+.detailBox {
+  width:690px;
+  border:1px solid #bbb;
+}
+.titleBox {
+  width: 688px;
+  background-color:#fdfdfd;
+  padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+label.detail-label, label.post-label {
+  color: #00aceb;
+}
+
+label.post-label {
+  width: 150px;
+}
+
+textarea {
+  width: 310px;
+  height: auto;
+}
+
+select#section, input#location {
+  width: 156px;
+}
+
+.commentBox {
+  padding:10px;
+  border-top:1px dotted #bbb;
+}
+
+#comment-input {
+  width: 90%;
+}
+
+#add-comment {
+  width: 100%;
+}
+
+.commentList {
+  padding:0;
+  list-style:none;
+  max-height:200px;
+  overflow:auto;
+}
+.commentList li {
+  margin:0;
+  margin-top:10px;
+}
+.commentList li > div {
+  display:table-cell;
+}
+.commenter {
+  width:100px;
+  margin-right:5px;
+  height:100%;
+  float:left;
+  color: #00aceb;
+}
+
+.commentText p {
+  margin:0;
+}
+.sub-text {
+  color:#aaa;
+  font-family:verdana;
+  font-size:11px;
+}
+.actionBox {
+  border-top:1px dotted #bbb;
+  padding:10px;
+}

@@ -1,0 +1,113 @@
+user1 
+	post1
+		comment1, comment2, comment3,
+	post2
+		comment1, comment2, comment3,
+	post3
+		comment1, comment2, comment3,
+
+		
+user2 
+	post4
+		comment1, comment2, comment3,
+	post5
+		comment1, comment2, comment3,
+	post6
+		comment1, comment2, comment3,
+		
+		
+		
+		
+		
+		
+		
+		
+db.mycollection.find({"IMAGE URL":{$ne:null}});
+		
+		
+		
+		
+		
+
+{
+    “id”: 1,
+    "list": [1,2,3]
+}
+{$addToSet:{list:4}}
+		
+		
+		
+{fn:'Xianjian', ln:'Bao', password:'123456', email:'baoxianjian@gmail.com', 
+	posts:[
+		{
+			uuid:'xxxx',title:'xxx', type:0, status:0 , key_time:123456789, location:'Student Lounge of MUM', desc:'red pen', pubat:123456789, 
+			comments:[{uuid:'xxxx',u_id:'xxxxxxxxxx',comment:'xxx', pubat:122345667}]
+		}
+	]
+}
+
+
+db.users.insert({fn:'Xianjian', ln:'Bao', password:'123456', email:'baoxianjian@gmail.com'});
+
+db.users.find({posts:{"xxx":"aaa"}},{"posts":{"$slice":[0,1]},posts:1,_id:0}) 
+
+db.users.find({posts:{"xxx":"aaa"}},{posts:1});
+
+//显示指定字段
+db.users.find({posts:{"xxx":"aaa"}},{posts:1, _id:0});
+
+//根据元素查询 且只显示该元素信息
+db.users.find({posts:{"xxx":"aaa"}},{"posts":{"$slice":[0,1]},posts:1,_id:0}) 
+
+//查询lost
+db.users.find({posts:{$match:{"type":0}}},{posts:1}).pretty();
+
+db.users.find({"posts.type":0},{"posts":{"$slice":[0,1]},posts:1,_id:0}).pretty();
+
+db.users.find({"posts.uuid":"28d309d0-b9c3-11e7-8970-c1888625cc12"},{"posts":{"$slice":[0,1]},posts:1,_id:0}).pretty();
+
+
+
+//ok 帖子为0的列表
+db.users.aggregate({"$unwind":"$posts"},{"$match":{"posts.type":0}})
+
+//根据uuid查询单个post
+db.users.aggregate({"$unwind":"$posts"},{"$match":{"posts.uuid":"28d309d0-b9c3-11e7-8970-c1888625cc12"}})
+
+
+//ok 指定字段
+db.users.aggregate({"$unwind":"$posts"},{"$match":{"posts.type":0}},{$project:{"posts":1,"_id":0}});
+
+//ok 查询comments
+db.users.aggregate({"$unwind":"$posts"},{"$match":{"posts.uuid":"28d309d0-b9c3-11e7-8970-c1888625cc12"}},{$project:{"comments":1,"_id":0}});
+
+
+db.users.update({"email":"baoxianjian@gmail.com"},{$set:{posts:[{xxx:'aaa'}]}});
+
+db.users.update({"email":"baoxianjian@gmail.com"},{$addToSet:{posts:[{x2:'bbb'}]}});
+db.users.update({"email":"baoxianjian@gmail.com"},{$addToSet:{posts:[{x3:'ccc'}]}});
+
+
+db.users.update({"email":"baoxianjian@gmail.com", posts},{$addToSet:{posts.comment:[{x1:'aaa'}]}});
+
+
+
+//增加帖子
+db.users.update({"email":"baoxianjian@gmail.com"},{$addToSet:{posts:{
+			title:'xxx0', type:0, status:0 , key_time:123456789, location:'Student Lounge of MUM', desc:'red pen', pubat:123456789, 
+			comments:[{u_id:'xxxxxxxxxx',comment:'xxx', pubat:122345667}]
+		}
+	}
+});
+
+//修改帖子状态
+db.users.update({"posts.uuid":"981677a0-b9c3-11e7-8f5e-bd481da014f0"}, {$set:{"posts.$.status":2}});
+
+
+//增加评论
+db.users.update({"email":"baoxianjian@gmail.com"},{$addToSet:{posts:{
+			title:'xxx0', type:0, status:0 , key_time:123456789, location:'Student Lounge of MUM', desc:'red pen', pubat:123456789, 
+			comments:[{u_id:'xxxxxxxxxx',comment:'xxx', pubat:122345667}]
+		}
+	}
+});

@@ -1,0 +1,197 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Lost & Found Board</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home" id="home-hover">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" id="signIn-hover">Sign in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup" id="signUp">Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newpost" id="newPost-hover">Post</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="my-4">Sign Up
+                <small>It's free and anyone can join</small>
+            </h1>
+
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <img [src]='imagePath' class="card-img-top" alt="Card image cap">
+                <div class="card-body">
+                    <!--<h2 class="card-title">Post Title</h2>-->
+                    <form [formGroup]="signupForm" #f="ngForm" class="signup-form" (ngSubmit)= register(f)>
+                        <br>
+                        <input ngModel formControlName="firstName" class="signup-input" type="text" name="first_name" id="first_name"
+                               placeholder=" First Name"><br>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('firstName').touched &&
+                            signupForm.get('firstName').errors &&
+                            signupForm.get('firstName').errors.required">
+                            First name is required.</div>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('firstName').touched &&
+                            signupForm.get('firstName').errors &&
+                            signupForm.get('firstName').errors.notAlphabet">
+                            First name must be alphabets.</div>
+                        <input ngModel formControlName="lastName" class="signup-input" type="text" name="last_name" id="last_name"
+                               placeholder=" Last Name"><br>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('lastName').touched &&
+                            signupForm.get('lastName').errors &&
+                            signupForm.get('lastName').errors.required">
+                            Last name is required.</div>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('lastName').touched &&
+                            signupForm.get('lastName').errors &&
+                            signupForm.get('lastName').errors.notAlphabet">
+                            Last name must be alphabets.</div>
+                        <input ngModel formControlName="email" class="signup-input" type="email" name="email" id="email"
+                               placeholder=" Email">
+                        <br>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('email').touched &&
+                            signupForm.get('email').errors &&
+                            signupForm.get('email').errors.required">
+                            Have to input email address.
+                        </div>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('email').touched &&
+                            signupForm.get('email').errors &&
+                            signupForm.get('email').errors.mum">
+                            Have to input a MUM email address.
+                        </div>
+                        <input ngModel formControlName="confirmEmail" class="signup-input" type="email" name="confirm_email" id="confirm_email"
+                               placeholder=" Confirm Email">
+                        <br>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('confirmEmail').touched &&
+                            signupForm.get('confirmEmail').errors &&
+                            signupForm.get('confirmEmail').errors.required">
+                            Have to confirm email address.
+                        </div>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('confirmEmail').touched &&
+                            signupForm.get('confirmEmail').value != signupForm.get('email').value">
+                            Input email address doesn't match.</div>
+                        <input ngModel formControlName="password" class="signup-input" type="password" name="password" id="password"
+                               placeholder=" Password">
+                        <br>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('password').touched &&
+                            signupForm.get('password').errors &&
+                            signupForm.get('password').errors.required">
+                            Have to input password.
+                        </div>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('password').touched &&
+                            signupForm.get('password').errors &&
+                            signupForm.get('password').errors.notValidPwd">
+                            Have to input 6 digits number.
+                        </div>
+                        <input ngModel formControlName="confirmPassword"class="signup-input" type="password" name="confirm_password" id="confirm_password"
+                               placeholder=" Confirm password">
+                        <br>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('confirmPassword').touched &&
+                            signupForm.get('confirmPassword').errors &&
+                            signupForm.get('confirmPassword').errors.required">
+                            Have to confirm email address.
+                        </div>
+                        <div class="alert-danger" *ngIf="
+                            signupForm.get('confirmPassword').touched &&
+                            signupForm.get('confirmPassword').value != signupForm.get('password').value">
+                            Input password doesn't match.</div>
+                        <br>
+                        <button class="btn btn-primary" style="width: 260px">Sign Up</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    Already a member?
+                    <a href="/login"> Login here.</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Categories</h5>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <ul class="list-unstyled mb-0">
+                        <li>
+                          <a href="/posts/type/0">Lost</a>
+                        </li>
+                        <li>
+                          <a href="/posts/status/0">New Open</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-6">
+                      <ul class="list-unstyled mb-0">
+                        <li>
+                          <a href="/posts/type/1">Found</a>
+                        </li>
+                        <li>
+                          <a href="/posts/status/1">Closed</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>

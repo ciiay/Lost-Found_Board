@@ -1,0 +1,171 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Lost & Found Board</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home" id="home-hover">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home" id="signOut-hover">Sign out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/newpost" id="newPost-hover">Post</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Content -->
+    <div class="container">
+    
+        <div class="row">
+    
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+    
+                <h1 class="my-4">Post Detail
+                    <!--<small>Secondary Text</small>-->
+                </h1>
+    
+                <!-- Blog Post -->
+                <div class="card mb-4" *ngIf="detail">
+                        <img class="card-img-top" *ngIf="detail['type']==0" [src]="lostImg" alt="Card image cap">
+                        <img class="card-img-top" *ngIf="detail['type']==1" [src]="findImg" alt="Card image cap">
+                    <div class="card-body" >
+                        <h2 class="card-title" *ngIf="detail['type']==0">&#9785; {{detail['title']}}</h2>
+                        <h2 class="card-title" *ngIf="detail['type']==1">&#9829; {{detail['title']}}</h2>
+                        <form class="detail-form">
+                            <label for="status" class="detail-label">Status: </label>
+                            <span class="detail-span" *ngIf="detail['status']==0" id="status">New open </span>
+                            <button class="btn btn-primary" (click)="close()"
+                                    *ngIf="currentUser['email'] == user['email'] && detail['status']==0">
+                            Close</button>
+
+                            <span class="detail-span" *ngIf="detail['status']==1" id="status">Closed</span><br>
+                            <label for="location" class="detail-label">Location: </label>
+                            <span class="detail-span" id="location">{{detail['location']}}</span><br>
+                            <label for="key-time" class="detail-label">Found Time: </label>
+                            <span class="detail-span" id="key-time">{{detail['key_time']}}</span><br>
+                            <label for="contact" class="detail-label">Contact: </label>
+                            <span class="contact" id="contact" type="email">goodpal@gmail.com</span><br>
+                            <label for="description" class="detail-label">Description: </label>
+                            <p class="detail-desc" id="description">{{detail['desc']}}</p>
+                            <!--<label for="comments" class="detail-label">Comments</label>-->
+    
+                            <div class="detailBox">
+                                <div class="titleBox">
+                                    <label>Comments</label>
+                                </div>
+                                <div class="actionBox">
+                                    <ul class="commentList">
+                                        <li *ngFor="let item of comments">
+                                            <div class="commenter">
+                                                {{item['email']}}
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">{{item['comment']}}</p> <span class="date sub-text">{{item['pubat'] | date:'MMM d, y'}}</span>
+    
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                    <form class="form-inline" role="form">
+                                    </form>
+    
+                                    <form class="form-inline" role="form">
+                                        <p id="add-comment">
+                                            <input [(ngModel)]="comment"  name="comment" id="comment-input" class="form-control" type="text" placeholder="Your comments" />
+                                            <button class="btn btn-primary" (click)="addComment()">Add</button>
+                                        </p>
+                                    </form>
+    
+                                </div>
+                            </div>
+    
+                            <br>
+                            <button class="btn btn-primary" (click)='goback()' >Go Back &larr;</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted" *ngIf="user && detail">
+                        Posted on {{detail['pubat'] | date:'MMM d, y'}} by
+                        <a href="#">{{user['fn']}} {{user['ln']}}</a>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+    
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+    
+
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                            <a href="/posts/type/0">Lost</a>
+                            </li>
+                            <li>
+                            <a href="/posts/status/0">New Open</a>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                            <a href="/posts/type/1">Found</a>
+                            </li>
+                            <li>
+                            <a href="/posts/status/1">Closed</a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+    
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Side Widget</h5>
+                    <div class="card-body">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                    </div>
+                </div>
+    
+            </div>
+    
+        </div>
+        <!-- /.row -->
+    
+    </div>
+    <!-- /.container -->
+    
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
