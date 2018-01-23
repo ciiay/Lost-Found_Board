@@ -10,7 +10,7 @@ import { Credentials } from './login.component';
 export class AuthService {
     constructor(private http: HttpClient,private returnobj :ReturnObj) { }
     login(credentials:Credentials)   {
-        this.http.get("http://155.254.33.141:9000/api/users/"+credentials.email).subscribe(data=>{
+        this.http.get("http://127.0.1:3000/api/users/"+credentials.email).subscribe(data=>{
              credentials.fullname =  data['fn']+' '+data['ln'];
                 console.log(credentials);
             localStorage.setItem('currentUser', JSON.stringify(credentials));

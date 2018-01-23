@@ -22,7 +22,7 @@ export class DetailCompenent implements OnInit {
             this.detail = data['posts'];
             this.user = data;
             console.log(data);
-            this.http.get('http://155.254.33.141:9000/api/users/posts/'+data['posts']['uuid']+'/comments').subscribe(
+            this.http.get('http://127.0.0.1:3000/api/users/posts/'+data['posts']['uuid']+'/comments').subscribe(
                 data=>{
                     console.log(data);
                     this.comments = data;
@@ -47,7 +47,7 @@ export class DetailCompenent implements OnInit {
         console.log(this.detail);
         this.detail.status = '1';
 
-        this.http.post('http://155.254.33.141:9000/api/users/posts/'+this.user['posts']['uuid'],{status:'1'})
+        this.http.post('http://127.0.0.1:3000/api/users/posts/'+this.user['posts']['uuid'],{status:'1'})
             .subscribe(
                 data => {
                     if (data['status'] == '1') {
@@ -69,7 +69,7 @@ export class DetailCompenent implements OnInit {
     addComment(){
         console.log(this.comment);
 
-        this.http.post('http://155.254.33.141:9000/api/users/posts/' + this.user['posts']['uuid'] + '/comments',
+        this.http.post('http://127.0.0.1:3000/api/users/posts/' + this.user['posts']['uuid'] + '/comments',
             {email:this.currentUser['email'], comment:this.comment})
             .subscribe(
                 data => {

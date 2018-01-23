@@ -12,7 +12,7 @@ export class PostsService{
 
     getPost(cat:string, val:string):Promise<any>{
         // return this.getProducts().then(products=>products.find(obj=>obj.id==id));
-        const url = 'http://155.254.33.141:9000/api/users/posts/'+cat+'/'+val;
+        const url = 'http://127.0.1:3000/api/users/posts/'+cat+'/'+val;
         return this.http.get(url)
         .toPromise()
         .then(data=>data)

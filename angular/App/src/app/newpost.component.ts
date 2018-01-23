@@ -59,7 +59,7 @@ export class NewpostComponent {
         }
 
         console.log(newPost);
-        this.http.post('http://155.254.33.141:9000/api/users/posts', newPost)
+        this.http.post('http://127.0.0.1:3000/api/users/posts', newPost)
             .subscribe(
                 data => {
                     if(data['status'] == 1){
